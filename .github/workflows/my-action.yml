@@ -1,0 +1,33 @@
+# Name of your workflow
+name: Cpp CMake GTest Template workflow
+
+# Define the trigger event(s)
+on: [push, pull_request]
+
+# Jobs run in parallel by default, each runs steps in sequence
+jobs: 
+
+  build-test-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo apt install -y build-essential python3
+
+      - name: Install gtest
+        run: |
+          git submodule init
+          git submodule update
+          make -C submodules
+          sudo make -C submodules install
+
+      - name: Build app
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTESTS=True; cmake --build build
+
+      - name: Run app
+        run: ./build/app
+      
+      - name: Run unit tests
+        run: ./build/tests

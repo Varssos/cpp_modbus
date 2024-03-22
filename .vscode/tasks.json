@@ -1,0 +1,88 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "generate_build_system",
+            "type": "shell",
+            "options": {
+                    "cwd": "${workspaceRoot}"
+            },
+            "command": "cmake -B build -DCMAKE_BUILD_TYPE=Debug -DTESTS=True",
+            "problemMatcher": []
+        },
+        {
+            "label": "build",
+            "type": "shell",
+            "options": {
+                    "cwd": "${workspaceRoot}"
+            },
+            "command": "cmake --build build",
+            "problemMatcher": []
+        },
+        {
+            "label": "install",
+            "type": "shell",
+            "options": {
+                    "cwd": "${workspaceRoot}"
+            },
+            "command": "sudo cmake --install build",
+            "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "options": {
+                    "cwd": "${workspaceRoot}"
+            },
+            "command": "cmake --clean build",
+            "problemMatcher": []
+        },
+        {
+            "label": "run_app",
+            "type": "shell",
+            "options": {
+                    "cwd": "${workspaceRoot}"
+            },
+            "command": "./build/app",
+            "problemMatcher": []
+        },
+        {
+            "label": "build_run_app",
+            "type": "shell",
+            "options": {
+                    "cwd": "${workspaceRoot}"
+            },
+            "command": "cmake --build build; ./build/app",
+            "problemMatcher": []
+        },
+        {
+            "label": "rerun_tests",
+            "type": "shell",
+            "options": {
+                    "cwd": "${workspaceRoot}"
+            },
+            "command": "cmake -B build -DCMAKE_BUILD_TYPE=Debug -DTESTS=True; cmake --build build; ./build/tests",
+            "problemMatcher": []
+        },
+        {
+            "label": "build_run_tests",
+            "type": "shell",
+            "options": {
+                    "cwd": "${workspaceRoot}"
+            },
+            "command": "cmake --build build; ./build/tests",
+            "problemMatcher": []
+        },
+        {
+            "label": "run_tests",
+            "type": "shell",
+            "options": {
+                    "cwd": "${workspaceRoot}"
+            },
+            "command": "./build/tests",
+            "problemMatcher": []
+        }
+    ]
+}
