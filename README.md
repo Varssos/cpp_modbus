@@ -16,6 +16,12 @@ My C++ project configuration
 - [fmt](https://github.com/fmtlib/fmt)
 
 
+### 2.2 Preconditions
+
+```
+sudo apt-get install libtool autoconf automake pkg-config
+```
+
 ### 2.2 Build of dependencies
 
 To build and install module dependencies navigate to `{PROJECT_ROOT}` and invoke

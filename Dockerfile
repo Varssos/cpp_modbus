@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 
 # Install build tools
 RUN apt update && \
-    apt install -y git build-essential cmake
+    apt install -y git build-essential cmake libtool autoconf automake pkg-config
 
 # Copy project into image
 RUN mkdir /project

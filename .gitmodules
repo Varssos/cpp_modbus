@@ -4,3 +4,6 @@
 [submodule "submodules/fmt"]
 	path = submodules/fmt
 	url = https://github.com/fmtlib/fmt.git
+[submodule "submodules/libmodbus"]
+	path = submodules/libmodbus
+	url = https://github.com/stephane/libmodbus.git

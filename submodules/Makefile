@@ -4,17 +4,20 @@ MAKEFLAGS += --no-print-directory
 
 .PHONY: clean all \
 	gtest gtest_install gtest_clean \
-	fmt fmt_install fmt_clean
+	fmt fmt_install fmt_clean \
+	libmodbus libmodbus_install libmodbus_clean
 
-all: gtest fmt
+all: gtest fmt libmodbus
 
 install: check_runner \
 	gtest_install \
-	fmt_install
+	fmt_install \
+	libmodbus_install
 
 clean: \
 	gtest_clean \
-	fmt_clean
+	fmt_clean \
+	libmodbus_clean
 
 check_runner: # check if make is executed by root user
 ifneq ($(runner), root)
@@ -58,3 +61,21 @@ fmt_install: check_runner
 fmt_clean:
 	@echo Clean fmt
 	@rm -rf ./$(FMT_BUILD_DIR)
+
+# MODBUS ---------------------------------
+
+libmodbus: libmodbus_clean
+	@echo Build libmodbus
+	@mkdir -p ./libmodbus/build
+	@cd libmodbus; ./autogen.sh;
+	@cd libmodbus; ./configure --prefix=`pwd`/build;
+	@$(MAKE) -C ./libmodbus/
+	@$(MAKE) -C ./libmodbus/ install
+
+libmodbus_install: check_runner
+	@echo Install libmodbus
+	@cp -r ./libmodbus/build/* /usr/local/
+
+libmodbus_clean:
+	@echo Clean libmodbus
+	@rm -rf ./libmodbus/build
