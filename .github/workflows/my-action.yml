@@ -26,10 +26,9 @@ jobs:
       - name: Build app
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTESTS=True; cmake --build build
 
-      - name: Export path to /usr/local/lib to LD_LIBRARY_PATH
-        run: export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-
       - name: Run app
+        env:
+          LD_LIBRARY_PATH: /usr/local/lib:$LD_LIBRARY_PATH
         run: ./build/app
       
       - name: Run unit tests
