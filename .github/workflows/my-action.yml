@@ -26,10 +26,10 @@ jobs:
       - name: Build app
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DTESTS=True; cmake --build build
 
-      - name: Run app
-        env:
-          LD_LIBRARY_PATH: /usr/local/lib:$LD_LIBRARY_PATH
-        run: ./build/app
+      # - name: Run app
+      #   env:
+      #     LD_LIBRARY_PATH: /usr/local/lib:$LD_LIBRARY_PATH
+      #   run: whereis libmodbus.so.5 && ./build/app
       
       - name: Run unit tests
         run: ./build/tests
