@@ -24,5 +24,8 @@ RUN cd /project/ && \
     cmake -B build -DTESTS=True && \
     cmake --build build
 
+# Add path to libmodbus.so to LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
+
 # Execute unit tests
 RUN /project/build/tests
