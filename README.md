@@ -14,6 +14,7 @@ My C++ project configuration
 
 - [gtest](https://github.com/google/googletest)
 - [fmt](https://github.com/fmtlib/fmt)
+- [libmodbus](https://github.com/stephane/libmodbus)
 
 
 ### 2.2 Preconditions
@@ -32,6 +33,9 @@ git submodule update
 make -C submodules
 sudo make -C submodules install
 ```
+
+Add to ~/.bashrc ?
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 ## 3. Build
 
